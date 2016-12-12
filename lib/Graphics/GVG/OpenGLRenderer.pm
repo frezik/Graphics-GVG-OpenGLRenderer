@@ -194,20 +194,22 @@ sub _make_code_rect
 
     my $make_rect_sub = sub {
         my ($width, $red, $green, $blue, $alpha) = @_;
+        my $far_x = $x + $width;
+        my $far_y = $y + $height;
         my $code = qq!
             glLineWidth( $width );
             glColor4ub( $red, $green, $blue, $alpha );
             glBegin( GL_LINES );
                 glVertex2f( $x, $y );
-                glVertex2f( $x + $width, $y );
+                glVertex2f( $far_x, $y );
 
-                glVertex2f( $x + $width, $y );
-                glVertex2f( $x + $width, $y + $height );
+                glVertex2f( $far_x, $y );
+                glVertex2f( $far_x, $far_y );
 
-                glVertex2f( $x + $width, $y + $height );
-                glVertex2f( $x, $y + $height );
+                glVertex2f( $far_x, $far_y );
+                glVertex2f( $x, $far_y );
 
-                glVertex2f( $x, $y + $height );
+                glVertex2f( $x, $far_y );
                 glVertex2f( $x, $y );
             glEnd();
         !;
