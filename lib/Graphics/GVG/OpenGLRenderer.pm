@@ -168,12 +168,12 @@ sub _make_code_line
     if( $self->_glow_count > 0 ) {
         # TODO not really getting the effect I was hoping for. Play around 
         # with it later.
-        my @colors1 = $self->_brighten( 1.3, $red, $green, $blue, $alpha );
-        my @colors2 = $self->_brighten( 0.6, $red, $green, $blue, $alpha );
-        my @colors3 = $self->_brighten( 0.1, $red, $green, $blue, $alpha );
-        $code = $make_line_sub->( 3.0, @colors3 );
+        my @colors1 = $self->_brighten( 2.0, $red, $green, $blue, $alpha );
+        my @colors2 = ($red, $green, $blue, $alpha);
+        my @colors3 = $self->_brighten( 0.7, $red, $green, $blue, $alpha );
+        $code = $make_line_sub->( 5.0, @colors3 );
         $code .= $make_line_sub->( 2.0, @colors2 );
-        $code .= $make_line_sub->( 0.5, @colors1 );
+        #$code .= $make_line_sub->( 1.0, @colors1 );
     }
     else {
         $code = $make_line_sub->( 1.0, $red, $green, $blue, $alpha );
@@ -373,7 +373,7 @@ sub _brighten
     my $hsv_color = Imager::Color->new(
         hue => $h,
         v => $v,
-        s => $v,
+        s => $s,
         alpha => $new_alpha,
     );
     return $hsv_color->rgba;
