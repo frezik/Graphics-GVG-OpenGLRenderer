@@ -385,3 +385,68 @@ __PACKAGE__->meta->make_immutable;
 1;
 __END__
 
+
+=head1 NAME
+
+  Graphics::GVG::OpenGLRenderer - Take a GVG file and turn it into Perl/OpenGL code
+
+=head1 DESCRIPTION
+
+=head1 ATTRIBUTES
+
+=head2 circle_segments / ellipse_segments
+
+In OpenGL, circles aren't really circles. They're polygons with a large number 
+of sides, which blur together enough to look like a circle.
+
+These attributes control how many sides those polygons will have. A circle or 
+ellipse that appears larger on the screen will need to be rendered with a 
+larger number of sides to maintain the illusion.
+
+The default is 40 for both.
+
+=head1 METHODS
+
+=head2 make_drawer_obj
+
+  my $opengl = $renderer->make_drawer_obj( $ast );
+
+Given an L<Graphics::GVG::AST> object, generates a new Perl object that, when 
+you call its C<draw()> method, will output the GVG description to OpenGL.
+
+The package will be uniquely created under C<Graphics::GVG::OpenGLRenderer>.
+
+=head2 make_code
+
+  my $pack_code = $renderer->make_code( $ast );
+
+Given an L<Graphics::GVG::AST> object, returns the code that can be used to 
+create the same kind of Perl object made by C<make_drawer_obj()>.
+
+=head1 LICENSE
+
+    Copyright (c) 2016  Timm Murray
+    All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without 
+    modification, are permitted provided that the following conditions are met:
+
+        * Redistributions of source code must retain the above copyright notice, 
+          this list of conditions and the following disclaimer.
+        * Redistributions in binary form must reproduce the above copyright 
+          notice, this list of conditions and the following disclaimer in the 
+          documentation and/or other materials provided with the distribution.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE 
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+    POSSIBILITY OF SUCH DAMAGE.
+
+=cut
