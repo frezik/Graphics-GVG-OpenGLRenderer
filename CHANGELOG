@@ -1,6 +1,6 @@
 Revision history for perl module Graphics::GVG::OpenGLRenderer
 
-0.3 2018-10-??
+0.3 2018-10-09
 
 - Implement against Graphics::GVG::Renderer
 
