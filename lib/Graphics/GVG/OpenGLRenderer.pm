@@ -32,6 +32,7 @@ use Data::UUID;
 use Imager::Color;
 use Math::Trig 'pi';
 
+with 'Graphics::GVG::Renderer::DefaultCode';
 with 'Graphics::GVG::Renderer';
 
 has [qw{ circle_segments ellipse_segments }] => (
@@ -41,12 +42,9 @@ has [qw{ circle_segments ellipse_segments }] => (
 );
 
 
-sub make_pack
+sub class_suffix
 {
-    my ($self) = @_;
-    my $uuid = Data::UUID->new->create_hex;
-    my $pack = __PACKAGE__ . '::' . $uuid;
-    return $pack;
+    return 'OpenGL';
 }
 
 sub make_opening_code
